@@ -71,19 +71,20 @@ export const WeatherContainer = ({weather, setWeather}) => {
     
     <section className="text-center text-black dark:text-white">
       <button onClick={handleChangeTheme} className="
-      w-[70px] h-8 bg-cover
+      w-[70px] h-5 bg-cover
       dark:hover:bg-yellow-100 
       dark:hover:text-black 
       dark:ease-in-out transition-all 
       duration-300 
       text-start
       dark:text-end
-      py-2 px-2
+      px-3
       text-xs 
-      rounded-[20%]
-       bg-[#0000003d]
+      rounded-[40%]
+      border-[1px]
+       bg-[#d7d7d770]
        text-gray-200
-       dark:bg-[#ffffff4c]
+       dark:bg-[#ffffff39]
        hover:bg-slate-900
        absolute 
        top-2 right-2">🌞</button>
@@ -105,7 +106,7 @@ export const WeatherContainer = ({weather, setWeather}) => {
     
       <div className="grid gap-5 sm:grid-cols-[1fr_auto]">
         {/* seccion superior */}
-        <article className="bg-slate-100/60 dark:bg-slate-950 dark:border-[2px]  rounded-2xl grid grid-cols-2 items-center p-3 ">
+        <article className="bg-slate-100/60 dark:bg-slate-950 dark:border-[2px]  rounded-2xl grid grid-cols-2 items-center p-3 w-[348px] h-[216px] sm:h-[300px] sm:w-[500px] ">
             <h4 className="col-span-2 capitalize"> {weather?.weather[0].description} </h4>
             <span className="dark:text-white text-5xl"> {ChangeUnitiTemp(weather?.main.temp)} </span>
             <picture> 
