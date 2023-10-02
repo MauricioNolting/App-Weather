@@ -2,12 +2,13 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { WeatherContainer } from './components/WeatherContainer'
+ 
 
 function App() {
 const [weather, setWeather] = useState(null)
 
 
-
+const [city, setCity] = useState("") 
 
 
 {/* <img src={"/nubes-pantalla-de-carga"} alt="" /> */}
@@ -24,8 +25,18 @@ const success = (pos) => {
      )
      .then(({data}) => setWeather(data))
      .catch((err) => console.log(err))
-
 }
+
+useEffect(() => {
+  if (city !== "") {
+    const API_KEY = "4702f8dc6b97e507ec5d53623bb1f55a";
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
+      .then(({ data }) => setWeather(data))
+      .catch((error) => console.log("Error al obtener datos de la API:", error));
+  }
+}, [city]);
+
+
 
 
 
@@ -44,7 +55,7 @@ useEffect(() => {
           <h3 className='animate-pulse'>Cargando...</h3>
         </div>
       ) : (
-        <WeatherContainer setWeather={setWeather} weather={weather} />
+        <WeatherContainer  weather={weather} setCity={setCity} city={city}/>
       )}
     </main>
   

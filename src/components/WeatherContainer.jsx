@@ -2,29 +2,19 @@ import { useEffect, useState } from "react"
 import WeatherStat from "./WeatherStat"
 import axios from "axios"
 
-export const WeatherContainer = ({weather, setWeather}) => {
+
+export const WeatherContainer = ({weather, setCity, setWeather, city}) => {
 
   const [isCelsius, setIsCelsius] = useState(true)
   const [theme, setTheme] = useState("light")
-  const [city, setCity] = useState("")
+
 
   // https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-  const callCity = async () => {
-    try {
-      const API_KEY = "4702f8dc6b97e507ec5d53623bb1f55a";
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`);
-      setWeather(response.data);
-    } catch (error) {
-      console.error("Error al obtener datos de la API:", error);
-    }
-  };
+ 
   
-  useEffect(() => {
-    callCity(); // Llama a la función para obtener datos de la API cuando city cambie
-  }, [city]);
-  
-    
 
+    
+//modo oscuro
   useEffect(() => {
     if (theme === "light") { 
       document.querySelector("html").classList.add("dark")
@@ -34,6 +24,7 @@ export const WeatherContainer = ({weather, setWeather}) => {
 
   }, [theme])
   
+  //para boton de modo oscuro
   const handleChangeTheme = () => {
     theme === "light" ? setTheme("dark") : setTheme("light")
   }
@@ -58,10 +49,22 @@ export const WeatherContainer = ({weather, setWeather}) => {
     setIsCelsius(!isCelsius)
    }
 
+
+   const handleChangeCity = (e) => {
+    setCity(e.target.value);
+  };
+
   //  Solicitar ciudad
-   const handleInputCity = (e) => {
-    setCity(e.taget.search.value)
-   }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const API_KEY = "4702f8dc6b97e507ec5d53623bb1f55a";
+    axios
+      .get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
+      .then(({ data }) => setWeather(data))
+      .catch((error) => console.log("Error al obtener datos de la API:", error));
+  };
+  
+
   
    console.log(city)
 
@@ -89,16 +92,16 @@ export const WeatherContainer = ({weather, setWeather}) => {
        absolute 
        top-2 right-2">🌞</button>
        
-       <form onSubmit={handleInputCity} className="relative bottom-10">
+       <form onSubmit={handleSubmit} className="relative bottom-10">
        <input
         className="bg-slate-500/50 border-[2px] rounded-md"
         type="text"
         name="search"
         placeholder="Ingrese una ciudad"
-        value={city} // Asignar el valor del input al estado de la ciudad
-        onChange={handleInputCity} // Manejar cambios en el input
+        value={city} 
+        onChange={handleChangeCity}// Asignar el valor del input al estado de la ciudad
+        // Manejar cambios en el input
       />
-        <button className="text-white bg-[#8f8a8a6e] border-[2px] rounded-md px-1 relative left-2" type="submit">Buscar</button>
        </form>
       
   
