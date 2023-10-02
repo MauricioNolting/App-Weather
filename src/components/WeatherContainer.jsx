@@ -14,7 +14,7 @@ export const WeatherContainer = ({weather, setCity, setWeather, city}) => {
   
 
     
-//modo oscuro
+// para usar modo oscuro
   useEffect(() => {
     if (theme === "light") { 
       document.querySelector("html").classList.add("dark")
@@ -42,14 +42,14 @@ export const WeatherContainer = ({weather, setCity, setWeather, city}) => {
       return `${farenheitTemp}°F`
     }
   } 
-   console.log(weather)
+ 
 
 
    const handleChangeUnitTemp = () => {
     setIsCelsius(!isCelsius)
    }
 
-
+   //actualizar valor de city
    const handleChangeCity = (e) => {
     setCity(e.target.value);
   };
@@ -63,16 +63,14 @@ export const WeatherContainer = ({weather, setCity, setWeather, city}) => {
       .then(({ data }) => setWeather(data))
       .catch((error) => console.log("Error al obtener datos de la API:", error));
   };
-  
-
-  
-   console.log(city)
 
 
-  //${weather[0].icon}.jpg
+
   return (
     
     <section className="text-center text-black dark:text-white justify-center">
+
+      {/* btn dark */}
       <button onClick={handleChangeTheme} className="
       dark:hover:bg-yellow-100 dark:hover:shadow-white dark:hover:shadow-md 
       hover:bg-black hover:shadow-lg hover:shadow-black
@@ -82,6 +80,8 @@ export const WeatherContainer = ({weather, setCity, setWeather, city}) => {
        relative
        top-[-50px]">  <img className="justify-center" src="/botonDark/btn-dark.svg" alt="Icono" /></button>
        
+
+       {/* escribir la ciudad */}
        <form onSubmit={handleSubmit} className="relative bottom-10">
        <input
         className="bg-slate-500/50 border-[2px] rounded-md"

@@ -27,14 +27,14 @@ const success = (pos) => {
      .catch((err) => console.log(err))
 }
 
-useEffect(() => {
-  if (city !== "") {
-    const API_KEY = "4702f8dc6b97e507ec5d53623bb1f55a";
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
-      .then(({ data }) => setWeather(data))
-      .catch((error) => console.log("Error al obtener datos de la API:", error));
-  }
-}, [city]);
+// useEffect(() => {
+//   if (city !== "") {
+//     const API_KEY = "4702f8dc6b97e507ec5d53623bb1f55a";
+//     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
+//       .then(({ data }) => setWeather(data))
+//       .catch((error) => console.log("Error al obtener datos de la API:", error));
+//   }
+// }, [city]);
 
 
 
