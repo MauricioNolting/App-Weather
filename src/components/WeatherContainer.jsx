@@ -72,25 +72,15 @@ export const WeatherContainer = ({weather, setCity, setWeather, city}) => {
   //${weather[0].icon}.jpg
   return (
     
-    <section className="text-center text-black dark:text-white">
+    <section className="text-center text-black dark:text-white justify-center">
       <button onClick={handleChangeTheme} className="
-      w-[70px] h-5 bg-cover
-      dark:hover:bg-yellow-100 
-      dark:hover:text-black 
+      dark:hover:bg-yellow-100 dark:hover:shadow-white dark:hover:shadow-md 
+      hover:bg-black hover:shadow-lg hover:shadow-black
       dark:ease-in-out transition-all 
       duration-300 
-      text-start
-      dark:text-end
-      px-3
-      text-xs 
-      rounded-[40%]
-      border-[1px]
-       bg-[#d7d7d770]
-       text-gray-200
-       dark:bg-[#ffffff39]
-       hover:bg-slate-900
-       absolute 
-       top-2 right-2">🌞</button>
+      rounded-md
+       relative
+       top-[-50px]">  <img className="justify-center" src="/botonDark/btn-dark.svg" alt="Icono" /></button>
        
        <form onSubmit={handleSubmit} className="relative bottom-10">
        <input
