@@ -55,7 +55,7 @@ useEffect(() => {
           <h3 className='animate-pulse'>Cargando...</h3>
         </div>
       ) : (
-        <WeatherContainer  weather={weather} setCity={setCity} city={city}/>
+        <WeatherContainer  setWeather={setWeather} weather={weather} setCity={setCity} city={city}/>
       )}
     </main>
   
